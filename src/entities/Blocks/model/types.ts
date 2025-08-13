@@ -1,6 +1,6 @@
 export type Orientation = "left" | "up" | "down" | "note";
 
-export type Frame = {
+export type Block = {
   id: string;
   text: string;
   image?: string;
@@ -16,10 +16,10 @@ export type Frame = {
   isSelected?: boolean;
 };
 
-export type NoteFrameProps = {
-  blocks: Frame[];
+export type NoteBlockProps = {
+  blocks: Block[];
 };
 
-export type PreviewFrameProps = {
-  blocks: Frame[];
+export type PreviewBlockProps = {
+  blocks: Block[];
 };

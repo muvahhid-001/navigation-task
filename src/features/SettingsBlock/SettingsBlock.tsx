@@ -10,6 +10,8 @@ import {
 import { orientationMapIcons } from "./lib/constants";
 import type { Orientation } from "@entities/Blocks/model/blockSlice";
 import type { SettingsBlockProps } from "./types";
+import closeIcon from "@/assets/images/close.svg";
+import arrowIcon from "@/assets/images/arrow.svg";
 
 const SettingsBlock: FC<SettingsBlockProps> = ({
   onClose,
@@ -30,8 +32,7 @@ const SettingsBlock: FC<SettingsBlockProps> = ({
     onOrientationPreview(activeSettingsId, localOrientation);
   }, [localOrientation]);
 
-  const currentImage =
-    orientationMapIcons[localOrientation as keyof typeof orientationMapIcons];
+  const currentImage = orientationMapIcons[localOrientation];
 
   const toggleSelectView = () => {
     setShowSelectView((prev) => !prev);
@@ -61,26 +62,28 @@ const SettingsBlock: FC<SettingsBlockProps> = ({
       )}
       <div className={styles.asideContent}>
         <button className={styles.close} onClick={onClose}>
-          <img src="/images/close.svg" alt="Закрыть" />
+          <img src={closeIcon} alt="Закрыть" />
         </button>
         <div className={styles.asideBlock}>
           <button className={styles.select} onClick={toggleSelectView}>
-            <img
-              src={currentImage}
-              alt="Выбрать Макет"
-              className={
-                localOrientation === "left"
-                  ? styles.imageLeft
-                  : styles.imageDefault
-              }
-            />
+            {currentImage && (
+              <img
+                src={currentImage}
+                alt="Выбрать Макет"
+                className={
+                  localOrientation === "left"
+                    ? styles.imageLeft
+                    : styles.imageDefault
+                }
+              />
+            )}
           </button>
           <button
             className={`${styles.save} ${isTextChanged ? styles.active : ""}`}
             onClick={handleSave}
             disabled={!isTextChanged}
           >
-            <img src="/images/arrow.svg" alt="Сохранить" />
+            <img src={arrowIcon} alt="Сохранить" />
           </button>
         </div>
       </div>

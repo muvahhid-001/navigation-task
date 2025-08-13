@@ -2,13 +2,12 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useHandleCountChange } from "./useHandleCountChange";
 import { setText } from "@/entities/Blocks/model/blockSlice";
-import type { PreviewFrameProps } from "@/entities/Blocks/model/types";
+import type { PreviewBlockProps } from "@/entities/Blocks/model/types";
 import type { Orientation } from "@/entities/Blocks/model/blockSlice";
 
-export const usePreviewFrame = ({ blocks }: PreviewFrameProps) => {
+export const usePreviewFrame = ({ blocks }: PreviewBlockProps) => {
   const dispatch = useDispatch();
   const handleCountChange = useHandleCountChange();
-
   const [activeSettingsId, setActiveSettingsId] = useState<string[]>([]);
   const [draftText, setDraftText] = useState<Record<string, string>>({});
   const [previewOrientations, setPreviewOrientations] = useState<

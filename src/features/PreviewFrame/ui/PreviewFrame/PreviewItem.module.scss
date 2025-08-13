@@ -1,11 +1,4 @@
-.PreviewFrameList {
-  display: flex;
-  flex-direction: column;
-  gap: 2.7rem;
-  width: 21.5625rem;
-}
-
-.PreviewFrameListBlock {
+.PreviewItem {
   cursor: pointer;
   position: relative;
   box-sizing: border-box;
@@ -18,7 +11,7 @@
   gap: 0.5rem;
 }
 
-.PreviewFrameListTitle {
+.title {
   width: 100%;
   font-family: "Urbanist", sans-serif;
   color: #3b4552ec;
@@ -31,7 +24,7 @@
   white-space: normal;
 }
 
-.PreviewFrameListImage {
+.image {
   object-fit: cover;
   align-self: self-start;
   width: 59px;
@@ -40,19 +33,8 @@
   background-color: rgba(128, 128, 128, 0.486);
 }
 
-.indicatorNone::after {
-  content: "";
-}
-
-.settings {
-  margin-top: -5.25rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  box-shadow: 0 4px 6px -3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
 .editableTextArea {
-  overflow: hidden !important;
+  overflow: hidden;
   box-sizing: border-box;
   min-height: 1.5em;
   padding: 0;
@@ -83,12 +65,12 @@
   }
 }
 
-.orientation_down.PreviewFrameListBlock,
-.orientation_up.PreviewFrameListBlock {
+.orientation_down.PreviewItem,
+.orientation_up.PreviewItem {
   flex-direction: column;
 }
 
-.orientation_down.PreviewFrameListBlock {
+.orientation_down.PreviewItem {
   flex-direction: column-reverse;
   padding-bottom: 1px;
 }
@@ -101,15 +83,15 @@
   align-self: start;
 }
 
-.orientation_note .PreviewFrameListImage {
+.orientation_note .image {
   display: none;
 }
 
-.orientation_note.PreviewFrameListBlock {
+.orientation_note.PreviewItem {
   padding-right: 14px;
 }
 
-.orientation_up .PreviewFrameListImage {
+.orientation_up .image {
   position: static;
   width: 21.39rem;
   align-self: center;
@@ -122,11 +104,11 @@
   margin-top: -0.91rem;
 }
 
-.orientation_up .PreviewFrameListTitle {
+.orientation_up .title {
   width: 20rem;
 }
 
-.orientation_down .PreviewFrameListImage {
+.orientation_down .image {
   position: static;
   align-self: center;
   width: 21.39rem;
@@ -143,7 +125,7 @@
   min-width: 20rem;
 }
 
-.orientation_down .PreviewFrameListTitle {
+.orientation_down .title {
   width: 20rem;
   &::after {
     content: none;
@@ -162,6 +144,7 @@
   backdrop-filter: blur(9px);
   border: none;
 }
+
 .focused {
   position: relative;
   z-index: 1;
@@ -184,4 +167,11 @@
 .selected {
   background-color: #f1f6fd;
   box-shadow: 0px 1px 5.3px 0px #149dff36;
+}
+
+.settings {
+  margin-top: -5.25rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 4px 6px -3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.05);
 }

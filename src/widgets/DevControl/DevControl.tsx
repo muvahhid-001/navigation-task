@@ -1,6 +1,6 @@
 import { useAppSelector } from "@/shared/hooks";
 import { selectBlocks } from "@entities/Blocks/model/blockSlice";
-import { useBlockUpdater } from "./hooks/useBlockUpdater";
+import { useBlockUpdater } from "./lib/useBlockUpdater";
 
 export const DevControls = () => {
   const blocks = useAppSelector(selectBlocks);

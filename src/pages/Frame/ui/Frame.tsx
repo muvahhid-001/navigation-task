@@ -1,9 +1,9 @@
-import { PreviewFrame } from "@entities/Blocks/ui/PreviewFrame/PreviewFrame";
+import { PreviewFrame } from "@/features/PreviewFrame/ui/PreviewFrame/PreviewFrame";
 import { useAppSelector } from "@/shared/hooks";
 import { selectBlocks } from "@entities/Blocks/model/blockSlice";
 import { ErrorBoundary } from "@/shared/ui/ErrorBoundary/ErrorBoundary";
 import { Fallback } from "@/shared/ui/Fallback/Fallback";
-import { DevControls } from "@features/DevControl/DevControl";
+import { DevControls } from "@/widgets/DevControl/DevControl";
 
 import styles from "./Frame.module.scss";
 

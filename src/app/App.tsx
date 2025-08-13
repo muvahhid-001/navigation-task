@@ -1,4 +1,4 @@
-import { Frame } from "@/widgets/Frame/ui/Frame";
+import { Frame } from "@/pages/Frame/ui/Frame";
 
 import "./App.scss";
 import "@/shared/config/fonts.css";
