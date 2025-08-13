@@ -1,0 +1,187 @@
+.PreviewFrameList {
+  display: flex;
+  flex-direction: column;
+  gap: 2.7rem;
+  width: 21.5625rem;
+}
+
+.PreviewFrameListBlock {
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 1.5625rem;
+  box-shadow: 0px 1px 8px 0px #0000001a;
+  background-color: #ffffff;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.PreviewFrameListTitle {
+  width: 100%;
+  font-family: "Urbanist", sans-serif;
+  color: #3b4552ec;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.PreviewFrameListImage {
+  object-fit: cover;
+  align-self: self-start;
+  width: 59px;
+  height: 58px;
+  border-radius: 13px;
+  background-color: rgba(128, 128, 128, 0.486);
+}
+
+.indicatorNone::after {
+  content: "";
+}
+
+.settings {
+  margin-top: -5.25rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 4px 6px -3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.editableTextArea {
+  overflow: hidden !important;
+  box-sizing: border-box;
+  min-height: 1.5em;
+  padding: 0;
+  font-family: "Urbanist", sans-serif;
+  color: #3b4552ec;
+  font-size: 0.875rem;
+  width: 320px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
+  resize: none;
+  overflow: visible;
+  margin: auto 0;
+  border: none;
+  outline: none;
+  background: transparent;
+
+  &::placeholder {
+    color: #b7b7b7ab;
+  }
+
+  &:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+.orientation_down.PreviewFrameListBlock,
+.orientation_up.PreviewFrameListBlock {
+  flex-direction: column;
+}
+
+.orientation_down.PreviewFrameListBlock {
+  flex-direction: column-reverse;
+  padding-bottom: 1px;
+}
+
+.orientation_down .editableTextArea {
+  width: 20rem;
+}
+
+.orientation_left .editableTextArea {
+  align-self: start;
+}
+
+.orientation_note .PreviewFrameListImage {
+  display: none;
+}
+
+.orientation_note.PreviewFrameListBlock {
+  padding-right: 14px;
+}
+
+.orientation_up .PreviewFrameListImage {
+  position: static;
+  width: 21.39rem;
+  align-self: center;
+  height: 11.3125rem;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-bottom: 0.25px;
+  margin-top: -0.91rem;
+}
+
+.orientation_up .PreviewFrameListTitle {
+  width: 20rem;
+}
+
+.orientation_down .PreviewFrameListImage {
+  position: static;
+  align-self: center;
+  width: 21.39rem;
+  height: 11.3125rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 24px;
+  border-bottom-left-radius: 24px;
+  margin-bottom: 0.03rem;
+}
+
+.orientation_up .editableTextArea {
+  margin-left: 0;
+  min-width: 20rem;
+}
+
+.orientation_down .PreviewFrameListTitle {
+  width: 20rem;
+  &::after {
+    content: none;
+  }
+}
+
+.orientation_down {
+  padding-bottom: 0;
+}
+
+.indicatorDown {
+  position: absolute;
+  bottom: 1rem;
+  background-color: #3f3f3f66;
+  color: white;
+  backdrop-filter: blur(9px);
+  border: none;
+}
+.focused {
+  position: relative;
+  z-index: 1;
+}
+
+.focused::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5625rem;
+  border: 1px solid transparent;
+  background: linear-gradient(230.09deg, #2bd1ff, #34b8ff, #229cfd) border-box;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+.selected {
+  background-color: #f1f6fd;
+  box-shadow: 0px 1px 5.3px 0px #149dff36;
+}

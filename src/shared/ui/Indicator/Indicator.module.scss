@@ -1,0 +1,64 @@
+.indicator {
+  will-change: transform;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.375rem;
+  padding: 0 0.5rem;
+  border-radius: 1.5rem;
+  color: #b4b4b4;
+  font-size: 12px;
+  cursor: pointer;
+  border: 0.5px solid #b4b4b4;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Urbanist", sans-serif;
+  gap: 0.25rem;
+  user-select: none;
+  float: right;
+  white-space: nowrap;
+  min-width: 22px;
+  transform: translateY(6px);
+  right: 12px;
+}
+
+.active {
+  background: linear-gradient(239.93deg, #3fccff -26.89%, #068dfb 70.78%);
+  box-shadow: 0px 1px 5.3px 0px #149dff36;
+  color: white;
+  border: none;
+}
+
+.position {
+  position: absolute;
+  bottom: 14px;
+}
+
+.focused:not(.active),
+.selected:not(.active) {
+  background: linear-gradient(230.09deg, #2bd1ff, #34b8ff, #229cfd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-color: transparent;
+}
+
+.focused:not(.active) {
+  position: relative;
+  right: 0rem;
+}
+
+.focused:not(.active)::before,
+.selected:not(.active)::before {
+  content: "";
+  position: absolute;
+  inset: -0.5px;
+  border-radius: 1.5625rem;
+  border: 0.5px solid transparent;
+  background: linear-gradient(230.09deg, #2bd1ff, #34b8ff, #229cfd) border-box;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
