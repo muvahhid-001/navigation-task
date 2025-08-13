@@ -1,6 +1,4 @@
 .indicator {
-  will-change: transform;
-
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -37,28 +35,6 @@
 
 .focused:not(.active),
 .selected:not(.active) {
-  background: linear-gradient(230.09deg, #2bd1ff, #34b8ff, #229cfd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  border-color: transparent;
-}
-
-.focused:not(.active) {
-  position: relative;
-  right: 0rem;
-}
-
-.focused:not(.active)::before,
-.selected:not(.active)::before {
-  content: "";
-  position: absolute;
-  inset: -0.5px;
-  border-radius: 1.5625rem;
-  border: 0.5px solid transparent;
-  background: linear-gradient(230.09deg, #2bd1ff, #34b8ff, #229cfd) border-box;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  pointer-events: none;
+  color: #2bbee7;
+  border-color: #25a9ce;
 }
