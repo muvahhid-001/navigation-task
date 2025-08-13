@@ -6,7 +6,6 @@ import { orientationMap } from "./lib/constants";
 import type { Orientation } from "@entities/Blocks/model/blockSlice";
 
 interface SelectViewProps {
-  activeSettingsId: string;
   currentOrientation: Orientation;
   onSelect: () => void;
   onOrientationSelect: (orientation: Orientation) => void;

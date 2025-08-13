@@ -15,6 +15,8 @@ export type Frame = {
   isSelected?: boolean;
 };
 
+const hasImage = (img: string) => img !== "" && img !== "/images/noneImage.png";
+
 const initialState: Frame[] = [
   {
     id: "block-3",
@@ -70,7 +72,7 @@ const initialState: Frame[] = [
     count: 10,
     originalCount: 10,
     orientation: "note",
-    hasImage: true,
+    hasImage: false,
     isFocused: false,
     isSelected: false,
   },
@@ -106,9 +108,7 @@ const blocksSlice = createSlice({
       const block = state.find((b) => b.id === action.payload.id);
       if (block) {
         block.image = action.payload.image;
-        block.hasImage =
-          action.payload.image !== "" &&
-          action.payload.image !== "/images/noneImage.png";
+        block.hasImage = hasImage(action.payload.image);
       }
     },
     setFocused: (state, action: PayloadAction<string>) => {

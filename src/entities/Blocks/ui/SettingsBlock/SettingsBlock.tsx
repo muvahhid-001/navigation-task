@@ -9,14 +9,7 @@ import {
 } from "@entities/Blocks/model/blockSlice";
 import { orientationMapIcons } from "./lib/constants";
 import type { Orientation } from "@entities/Blocks/model/blockSlice";
-
-interface SettingsBlockProps {
-  onClose: () => void;
-  onSave: () => void;
-  isTextChanged: boolean;
-  activeSettingsId: string;
-  onOrientationPreview: (id: string, orientation: Orientation) => void;
-}
+import type { SettingsBlockProps } from "./types";
 
 const SettingsBlock: FC<SettingsBlockProps> = ({
   onClose,
@@ -37,7 +30,8 @@ const SettingsBlock: FC<SettingsBlockProps> = ({
     onOrientationPreview(activeSettingsId, localOrientation);
   }, [localOrientation]);
 
-  const currentImage = orientationMapIcons[localOrientation];
+  const currentImage =
+    orientationMapIcons[localOrientation as keyof typeof orientationMapIcons];
 
   const toggleSelectView = () => {
     setShowSelectView((prev) => !prev);
@@ -60,7 +54,6 @@ const SettingsBlock: FC<SettingsBlockProps> = ({
     <aside className={styles.aside}>
       {showSelectView && (
         <SelectView
-          activeSettingsId={activeSettingsId}
           currentOrientation={localOrientation}
           onSelect={handleSelect}
           onOrientationSelect={setLocalOrientation}
