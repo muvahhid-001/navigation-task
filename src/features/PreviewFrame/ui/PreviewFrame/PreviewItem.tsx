@@ -10,6 +10,7 @@ import styles from "./PreviewItem.module.scss";
 interface PreviewItemProps {
   block: Block;
   isSettingsVisible: boolean;
+  isAnySettingsVisible: boolean;
   orientation: Orientation;
   isChanged: boolean;
   canSave: boolean;
@@ -25,6 +26,7 @@ interface PreviewItemProps {
 export const PreviewItem = ({
   block,
   isSettingsVisible,
+  isAnySettingsVisible,
   orientation,
   isChanged,
   canSave,
@@ -39,7 +41,8 @@ export const PreviewItem = ({
   const dispatch = useDispatch();
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter") {
+    e.stopPropagation();
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       if (canSave) onSave();
     }
@@ -47,13 +50,17 @@ export const PreviewItem = ({
 
   return (
     <div
-      className={`${styles.PreviewItem} ${
-        styles[`orientation_${orientation}`]
-      } ${block.isFocused ? styles.focused : ""} ${
-        block.isSelected ? styles.selected : ""
-      } ${isSettingsVisible ? styles.settings : ""}`}
-      onMouseEnter={() => dispatch(setFocused(block.id))}
-      onClick={() => dispatch(toggleSelected(block.id))}
+      className={`${styles.PreviewItem} ${styles[`orientation_${orientation}`]}
+      ${block.isFocused ? styles.focused : ""} 
+      ${block.isSelected ? styles.selected : ""} 
+      ${isSettingsVisible ? styles.settings : ""} 
+      ${isSettingsVisible ? styles.editing : ""}`}
+      onMouseEnter={() => {
+        if (!isAnySettingsVisible) dispatch(setFocused(block.id));
+      }}
+      onClick={() => {
+        if (!isSettingsVisible) dispatch(toggleSelected(block.id));
+      }}
     >
       {["up", "left", "note", "down"].includes(orientation) &&
         block.image?.trim() && (

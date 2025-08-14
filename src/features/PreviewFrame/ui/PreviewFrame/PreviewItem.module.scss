@@ -1,4 +1,5 @@
 .PreviewItem {
+  will-change: transform;
   cursor: pointer;
   position: relative;
   box-sizing: border-box;
@@ -9,6 +10,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  --borderWidth: 0.05rem;
+  --borderGrandients: linear-gradient(to right, #2bd1ff, #229cfd);
 }
 
 .title {
@@ -35,7 +38,6 @@
 }
 
 .editableTextArea {
-  overflow: hidden;
   box-sizing: border-box;
   min-height: 1.5em;
   padding: 0;
@@ -49,7 +51,7 @@
   word-break: break-word;
   white-space: pre-wrap;
   resize: none;
-  overflow: visible;
+  overflow: hidden;
   margin: auto 0;
   border: none;
   outline: none;
@@ -128,6 +130,7 @@
 
 .orientation_down .title {
   width: 20rem;
+
   &::after {
     content: none;
   }
@@ -146,23 +149,14 @@
   border: none;
 }
 
-.focused {
-  position: relative;
-  z-index: 1;
-}
-
 .focused::before {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 1.5625rem;
-  border: 1px solid transparent;
-  background: linear-gradient(230.09deg, #2bd1ff, #34b8ff, #229cfd) border-box;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  pointer-events: none;
+  padding: var(--borderWidth);
+  background: var(--borderGrandients);
+  border-radius: inherit;
+  mask: conic-gradient(#000 0 0) content-box exclude, conic-gradient(#000 0 0);
 }
 
 .selected {
@@ -175,4 +169,19 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   box-shadow: 0 4px 6px -3px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.editing {
+  background-color: #ffffff;
+  border: 1px solid #2bd1ff;
+  box-shadow: 0px 1px 8px 0px #0000001a;
+}
+
+.editing.selected {
+  background-color: #ffffff;
+  box-shadow: 0px 1px 8px 0px #0000001a;
+}
+
+.editing.focused::before {
+  content: none;
 }

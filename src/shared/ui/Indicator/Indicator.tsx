@@ -30,6 +30,7 @@ export const Indicator = ({
     ${isSelected ? styles.selected : isFocused ? styles.focused : ""} 
     ${isActive ? styles.active : ""} 
     ${className ?? ""} 
+    ${orientation === "down" ? styles.downText : ""} 
     ${height <= 42 && orientation === "left" ? styles.position : ""}`}
     >
       {isActive ? `+${count}` : count}

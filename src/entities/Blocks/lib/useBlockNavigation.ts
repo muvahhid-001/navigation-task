@@ -15,7 +15,12 @@ export const useBlockNavigation = (blocks: Block[], dispatch: AppDispatch) => {
         const prevIndex = Math.max(0, focusedIndex - 1);
         dispatch(setFocused(blocks[prevIndex].id));
       }
-      if (e.key === " " && focusedIndex !== -1) {
+      if (
+        e.key === " " &&
+        focusedIndex !== -1 &&
+        document.activeElement instanceof HTMLElement &&
+        !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)
+      ) {
         e.preventDefault();
         dispatch(toggleSelected(blocks[focusedIndex].id));
       }

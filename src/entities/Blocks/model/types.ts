@@ -14,6 +14,8 @@ export type Block = {
   orientation: Orientation;
   isFocused?: boolean;
   isSelected?: boolean;
+  isSettingsVisible: boolean;
+  hasImage: string;
 };
 
 export type NoteBlockProps = {

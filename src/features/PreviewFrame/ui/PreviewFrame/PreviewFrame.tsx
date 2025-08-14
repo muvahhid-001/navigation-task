@@ -30,6 +30,8 @@ export const PreviewFrame = ({ blocks }: PreviewBlockProps) => {
   ]);
   useBlockNavigation(blocks, dispatch);
 
+  const isAnySettingsVisible = activeSettingsId.length > 0;
+
   return (
     <div className={styles.PreviewFrameList}>
       {blocks.map((block: Block) => {
@@ -37,7 +39,7 @@ export const PreviewFrame = ({ blocks }: PreviewBlockProps) => {
           block.originalCount !== undefined &&
           block.count !== block.originalCount;
         const isSettingsVisible = activeSettingsId.includes(block.id);
-        const currentText = draftText[block.id]?.trim() ?? "";
+        const currentText = draftText[block.id] ?? "";
         const canSave = currentText.length > 0;
         const orientation = previewOrientations[block.id] ?? block.orientation;
 
@@ -55,6 +57,7 @@ export const PreviewFrame = ({ blocks }: PreviewBlockProps) => {
             <PreviewItem
               block={block}
               isSettingsVisible={isSettingsVisible}
+              isAnySettingsVisible={isAnySettingsVisible}
               orientation={orientation}
               isChanged={isChanged}
               canSave={canSave}
