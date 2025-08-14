@@ -26,19 +26,23 @@ const SelectView: FC<SelectViewProps> = ({
 
   return (
     <aside className={styles.aside}>
-      {Object.entries(orientationMap).map(([key, src]) => (
-        <button
-          key={key}
-          data-orientation={key}
-          className={`${styles.button} ${
-            currentOrientation === key ? styles.active : ""
-          }`}
-          onClick={handleClick}
-          type="button"
-        >
-          <img className={styles.img} src={src} alt="Иконка" />
-        </button>
-      ))}
+      {Object.entries(orientationMap).map(([key, defaultSrc]) => {
+        const isActive = currentOrientation === key;
+        const src = isActive
+          ? `/images/icons/iconsBold/${key}.svg`
+          : defaultSrc;
+        return (
+          <button
+            key={key}
+            data-orientation={key}
+            className={`${styles.button} ${isActive ? styles.active : ""}`}
+            onClick={handleClick}
+            type="button"
+          >
+            <img className={styles.img} src={src} alt="Иконка" />
+          </button>
+        );
+      })}
     </aside>
   );
 };

@@ -31,8 +31,10 @@ export const Indicator = ({
     ${isActive ? styles.active : ""} 
     ${className ?? ""} 
     ${orientation === "down" ? styles.downText : ""} 
-    ${height <= 42 && orientation === "left" ? styles.positionLeft : ""}
-    ${height <= 32 && orientation === "note" ? styles.positionNote : ""}`}
+    ${height <= 22 && orientation === "left" ? styles.positionLeft : ""}
+    ${height >= 23 && orientation === "left" ? styles.positionLeftTwo : ""}
+    ${height > 60 && orientation === "left" ? styles.positionReset : ""}
+    ${height <= 40 && orientation === "note" ? styles.positionNote : ""}`}
     >
       {isActive ? `+${count}` : count}
     </span>

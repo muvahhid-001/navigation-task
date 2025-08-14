@@ -27,11 +27,17 @@
   color: white;
   border: none;
 }
-
-.positionLeft,
+.positionLeft{
+  transform: translateY(24px);
+}
+.positionLeftTwo{
+  transform: translateY(14px);
+}
+.positionReset{
+    transform: translateY(8px);
+}
 .positionNote {
-  position: absolute;
-  bottom: 12px;
+    transform: translateY(16px);
 }
 .focused:not(.active),
 .selected:not(.active) {
