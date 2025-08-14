@@ -28,15 +28,15 @@
   border: none;
 }
 
-.position {
+.positionLeft,
+.positionNote {
   position: absolute;
-  bottom: 14px;
+  bottom: 12px;
 }
-
 .focused:not(.active),
 .selected:not(.active) {
   color: #2bbee7;
-  border-color: #25a9ce;
+  border-color: #2bbee7;
 }
 .indicator.downText {
   color: white;
