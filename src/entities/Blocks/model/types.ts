@@ -15,7 +15,7 @@ export type Block = {
   isFocused?: boolean;
   isSelected?: boolean;
   isSettingsVisible: boolean;
-  hasImage: string;
+  hasImage: boolean;
 };
 
 export type NoteBlockProps = {

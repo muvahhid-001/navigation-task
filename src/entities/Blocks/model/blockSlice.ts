@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import type { Block } from "./types";
 
 export type Orientation = "left" | "up" | "down" | "note";
 
@@ -145,5 +146,5 @@ export const {
   resetSelected,
 } = blocksSlice.actions;
 
-export const selectBlocks = (state: { blocks: Frame[] }) => state.blocks;
+export const selectBlocks = (state: { blocks: Block[] }) => state.blocks;
 export default blocksSlice.reducer;
