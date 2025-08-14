@@ -3,8 +3,9 @@ import { useDispatch } from "react-redux";
 import { usePreviewFrame } from "../../lib/usePreviewFrame";
 import { useBlockNavigation } from "@/entities/Blocks/lib/useBlockNavigation";
 import { useBlockHeights } from "@/entities/Blocks/lib/useBlockHeights";
-import SettingsBlock from "../../../SettingsBlock/SettingsBlock";
-import { PreviewItem } from "./PreviewItem";
+import SettingsBlock from "@/features/SettingsBlock/ui/SelectView/SettingsBlock";
+import { PreviewItem } from "@entities/Blocks/ui/PreviewItem/PreviewItem";
+import { clearFocused } from "@/entities/Blocks/model/blockSlice";
 import type { PreviewBlockProps, Block } from "@/entities/Blocks/model/types";
 import styles from "./PreviewFrame.module.scss";
 
@@ -13,7 +14,7 @@ export const PreviewFrame = ({ blocks }: PreviewBlockProps) => {
   const {
     activeSettingsId,
     draftText,
-    toggleSettings,
+    toggleSettings: rawToggleSettings,
     handleTextChange,
     handleSaveSettings,
     handleCloseSettings,
@@ -21,6 +22,11 @@ export const PreviewFrame = ({ blocks }: PreviewBlockProps) => {
     previewOrientations,
     handleOrientationPreview,
   } = usePreviewFrame({ blocks });
+
+  const toggleSettings = (id: string) => {
+    dispatch(clearFocused());
+    rawToggleSettings(id);
+  };
 
   const titleRefs = useRef<Record<string, HTMLElement | null>>({});
   const heights = useBlockHeights(blocks, titleRefs, [

@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import type { FC } from "react";
 import styles from "./SettingsBlock.module.scss";
-import SelectView from "./SelectView";
+import SelectView from "../../SelectView";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectBlocks,
   setOrientation,
 } from "@entities/Blocks/model/blockSlice";
-import { orientationMapIcons } from "./lib/constants";
+import { orientationMapIcons } from "../../lib/constants";
 import type { Orientation } from "@entities/Blocks/model/blockSlice";
-import type { SettingsBlockProps } from "./types";
+import type { SettingsBlockProps } from "../../types";
 
 const SettingsBlock: FC<SettingsBlockProps> = ({
   onClose,

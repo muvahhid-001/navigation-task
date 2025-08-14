@@ -112,11 +112,23 @@ const blocksSlice = createSlice({
       }
     },
     setFocused: (state, action: PayloadAction<string>) => {
-      state.forEach((b) => (b.isFocused = b.id === action.payload));
+      state.forEach((b) => {
+        b.isFocused = b.id === action.payload;
+      });
+    },
+    clearFocused: (state) => {
+      state.forEach((b) => {
+        b.isFocused = false;
+      });
     },
     toggleSelected: (state, action: PayloadAction<string>) => {
       const block = state.find((b) => b.id === action.payload);
       if (block) block.isSelected = !block.isSelected;
+    },
+    resetSelected: (state) => {
+      state.forEach((b) => {
+        b.isSelected = false;
+      });
     },
   },
 });
@@ -128,7 +140,9 @@ export const {
   setOrientation,
   setImage,
   setFocused,
+  clearFocused,
   toggleSelected,
+  resetSelected,
 } = blocksSlice.actions;
 
 export const selectBlocks = (state: { blocks: Frame[] }) => state.blocks;

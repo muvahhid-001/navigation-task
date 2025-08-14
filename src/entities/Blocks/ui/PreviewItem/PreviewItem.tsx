@@ -4,24 +4,8 @@ import { DotsButton } from "@/shared/ui/DotsButton/DotsButton";
 import { Indicator } from "@/shared/ui/Indicator/Indicator";
 import { setFocused, toggleSelected } from "@/entities/Blocks/model/blockSlice";
 import TextareaAutosize from "react-textarea-autosize";
-import type { Block, Orientation } from "@/entities/Blocks/model/types";
+import type { PreviewItemProps } from "./types";
 import styles from "./PreviewItem.module.scss";
-
-interface PreviewItemProps {
-  block: Block;
-  isSettingsVisible: boolean;
-  isAnySettingsVisible: boolean;
-  orientation: Orientation;
-  isChanged: boolean;
-  canSave: boolean;
-  currentText: string;
-  height: number;
-  titleRef: (el: HTMLElement | null) => void;
-  textareaRef: (el: HTMLTextAreaElement | null) => void;
-  onTextChange: (id: string, value: string) => void;
-  onSave: () => void;
-  onToggleSettings: (id: string) => void;
-}
 
 export const PreviewItem = ({
   block,
@@ -48,24 +32,39 @@ export const PreviewItem = ({
     }
   };
 
+  const handleMouseEnter = () => {
+    if (!isAnySettingsVisible) dispatch(setFocused(block.id));
+  };
+
+  const handleClick = () => {
+    if (!isSettingsVisible && !isAnySettingsVisible) {
+      dispatch(toggleSelected(block.id));
+    }
+  };
+
+  const handleDotsClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onToggleSettings(block.id);
+  };
+
   return (
     <div
-      className={`${styles.PreviewItem} ${styles[`orientation_${orientation}`]}
-      ${block.isFocused ? styles.focused : ""} 
-      ${block.isSelected ? styles.selected : ""} 
-      ${isSettingsVisible ? styles.settings : ""} 
-      ${isSettingsVisible ? styles.editing : ""}`}
-      onMouseEnter={() => {
-        if (!isAnySettingsVisible) dispatch(setFocused(block.id));
-      }}
-      onClick={() => {
-        if (!isSettingsVisible) dispatch(toggleSelected(block.id));
-      }}
+      className={[
+        styles.PreviewItem,
+        styles[`orientation_${orientation}`],
+        block.isFocused ? styles.focused : "",
+        !isSettingsVisible && block.isSelected ? styles.selected : "",
+        isSettingsVisible ? styles.settings : "",
+        isSettingsVisible ? styles.editing : "",
+      ].join(" ")}
+      onMouseEnter={handleMouseEnter}
+      onClick={handleClick}
     >
       {["up", "left", "note", "down"].includes(orientation) &&
         block.image?.trim() && (
           <img src={block.image} alt="Фото Заметки" className={styles.image} />
         )}
+
       {isSettingsVisible ? (
         <TextareaAutosize
           name={`text-${block.id}`}
@@ -93,25 +92,20 @@ export const PreviewItem = ({
               isSelected={block.isSelected}
               orientation={orientation}
               height={height}
-              className={`${
+              className={
                 orientation === "down"
                   ? styles.indicatorDown
                   : orientation === "up"
                   ? styles.indicatorTheme
                   : ""
-              }`}
+              }
             />
           )}
         </p>
       )}
+
       {!isSettingsVisible && (
-        <DotsButton
-          onClick={(e) => {
-            e.stopPropagation();
-            onToggleSettings(block.id);
-          }}
-          orientation={orientation}
-        />
+        <DotsButton onClick={handleDotsClick} orientation={orientation} />
       )}
     </div>
   );
