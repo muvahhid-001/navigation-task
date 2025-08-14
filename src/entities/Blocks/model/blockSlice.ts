@@ -4,21 +4,9 @@ import type { Block } from "./types";
 
 export type Orientation = "left" | "up" | "down" | "note";
 
-export type Frame = {
-  id: string;
-  text: string;
-  image?: string;
-  count: number;
-  originalCount?: number;
-  orientation: Orientation;
-  hasImage: boolean;
-  isFocused?: boolean;
-  isSelected?: boolean;
-};
-
 const hasImage = (img: string) => img !== "" && img !== "/images/noneImage.png";
 
-const initialState: Frame[] = [
+const initialState: Block[] = [
   {
     id: "block-3",
     text: "Drinking water isn't just about quenching your thirst. It plays a crucial role in maintaining the proper functioning of your",
@@ -29,6 +17,7 @@ const initialState: Frame[] = [
     hasImage: false,
     isFocused: false,
     isSelected: false,
+    isSettingsVisible: false,
   },
   {
     id: "block-4",
@@ -41,6 +30,7 @@ const initialState: Frame[] = [
     hasImage: true,
     isFocused: false,
     isSelected: false,
+    isSettingsVisible: false,
   },
   {
     id: "block-5",
@@ -53,6 +43,7 @@ const initialState: Frame[] = [
     hasImage: true,
     isFocused: false,
     isSelected: false,
+    isSettingsVisible: false,
   },
   {
     id: "block-6",
@@ -65,6 +56,7 @@ const initialState: Frame[] = [
     hasImage: true,
     isFocused: false,
     isSelected: false,
+    isSettingsVisible: false,
   },
   {
     id: "block-8",
@@ -76,6 +68,7 @@ const initialState: Frame[] = [
     hasImage: false,
     isFocused: false,
     isSelected: false,
+    isSettingsVisible: false,
   },
 ];
 
