@@ -1,12 +1,10 @@
-import noteImage from "@/assets/images/note.svg";
-import downImage from "@/assets/images/downImage.svg";
-import upImage from "@/assets/images/upImage.svg";
-import leftImage from "@/assets/images/leftImage.svg";
-
-import noteIcon from "@/assets/icons/note.svg";
-import downIcon from "@/assets/icons/down.svg";
-import upIcon from "@/assets/icons/up.svg";
-import leftIcon from "@/assets/icons/left.svg";
+import {
+  noteImage,
+  downImage,
+  upImage,
+  leftImage,
+} from "@/shared/assets/images";
+import { noteIcon, downIcon, upIcon, leftIcon } from "@shared/assets/icons";
 
 export const orientationMap = {
   note: noteImage,

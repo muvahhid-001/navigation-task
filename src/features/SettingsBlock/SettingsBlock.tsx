@@ -10,8 +10,8 @@ import {
 import { orientationMapIcons } from "./lib/constants";
 import type { Orientation } from "@entities/Blocks/model/blockSlice";
 import type { SettingsBlockProps } from "./types";
-import closeIcon from "@/assets/images/close.svg";
-import arrowIcon from "@/assets/images/arrow.svg";
+import { closeIcon } from "@/shared/assets/images";
+import { arrowIcon } from "@/shared/assets/images";
 
 const SettingsBlock: FC<SettingsBlockProps> = ({
   onClose,
