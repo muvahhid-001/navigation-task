@@ -10,8 +10,6 @@ import {
 import { orientationMapIcons } from "./lib/constants";
 import type { Orientation } from "@entities/Blocks/model/blockSlice";
 import type { SettingsBlockProps } from "./types";
-import { closeIcon } from "@/shared/assets/images";
-import { arrowIcon } from "@/shared/assets/images";
 
 const SettingsBlock: FC<SettingsBlockProps> = ({
   onClose,
@@ -62,7 +60,7 @@ const SettingsBlock: FC<SettingsBlockProps> = ({
       )}
       <div className={styles.asideContent}>
         <button className={styles.close} onClick={onClose}>
-          <img src={closeIcon} alt="Закрыть" />
+          <img src={"/images/close.svg"} alt="Закрыть" />
         </button>
         <div className={styles.asideBlock}>
           <button className={styles.select} onClick={toggleSelectView}>
@@ -83,7 +81,7 @@ const SettingsBlock: FC<SettingsBlockProps> = ({
             onClick={handleSave}
             disabled={!isTextChanged}
           >
-            <img src={arrowIcon} alt="Сохранить" />
+            <img src={"/images/arrow.svg"} alt="Сохранить" />
           </button>
         </div>
       </div>

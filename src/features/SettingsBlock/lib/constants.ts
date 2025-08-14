@@ -1,21 +1,13 @@
-import {
-  noteImage,
-  downImage,
-  upImage,
-  leftImage,
-} from "@/shared/assets/images";
-import { noteIcon, downIcon, upIcon, leftIcon } from "@shared/assets/icons";
-
 export const orientationMap = {
-  note: noteImage,
-  down: downImage,
-  up: upImage,
-  left: leftImage,
+  note: "/images/note.svg",
+  down: "/images/downImage.svg",
+  up: "/images/upImage.svg",
+  left: "/images/leftImage.svg",
 };
 
 export const orientationMapIcons = {
-  note: noteIcon,
-  down: downIcon,
-  up: upIcon,
-  left: leftIcon,
+  note: "/images/icons/note.svg",
+  down: "/images/icons/down.svg",
+  up: "/images/icons/up.svg",
+  left: "/images/icons/left.svg",
 };
