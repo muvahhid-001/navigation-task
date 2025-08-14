@@ -1,27 +1,31 @@
-import { useCallback, useState } from "react";
+import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/shared/hooks";
 import {
+  selectBlocks,
   setText,
   setCount,
   setOriginalCount,
 } from "@entities/Blocks/model/blockSlice";
-import { selectBlocks } from "@entities/Blocks/model/blockSlice";
 
-type Block = ReturnType<typeof selectBlocks>[number];
-
-export const useBlockUpdater = (blocks: Block[]) => {
+export const useBlockUpdater = () => {
   const dispatch = useDispatch();
+  const blocks = useAppSelector(selectBlocks);
   const [countInput, setCountInput] = useState("");
 
-  const setTextAll = useCallback(
-    (text: string) => {
-      blocks.forEach((block) => dispatch(setText({ id: block.id, text })));
+  const handleTextChangeAll = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newText = e.target.value;
+      blocks.forEach((block) => {
+        dispatch(setText({ id: block.id, text: newText }));
+      });
     },
     [blocks, dispatch]
   );
 
-  const setCountAll = useCallback(
-    (value: string) => {
+  const handleCountChangeAll = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      let value = e.target.value;
       if (value === "") {
         setCountInput("");
         blocks.forEach((block) => {
@@ -30,24 +34,31 @@ export const useBlockUpdater = (blocks: Block[]) => {
         });
         return;
       }
-
-      let num: number;
       if (value.startsWith("+")) {
-        num = Number(value.slice(1));
+        let num = Number(value.slice(1));
+        if (isNaN(num)) return;
+        if (num > 9999) num = 9999;
+        setCountInput(value);
+        blocks.forEach((block) =>
+          dispatch(setCount({ id: block.id, count: num }))
+        );
       } else {
-        num = Number(value);
+        let num = Number(value);
+        if (isNaN(num)) return;
+        if (num > 9999) num = 9999;
+        setCountInput(String(num));
+        blocks.forEach((block) => {
+          dispatch(setCount({ id: block.id, count: num }));
+          dispatch(setOriginalCount({ id: block.id, originalCount: num }));
+        });
       }
-      if (isNaN(num)) return;
-      if (num > 9999) num = 9999;
-
-      setCountInput(value);
-      blocks.forEach((block) => {
-        dispatch(setCount({ id: block.id, count: num }));
-        dispatch(setOriginalCount({ id: block.id, originalCount: num }));
-      });
     },
     [blocks, dispatch]
   );
 
-  return { countInput, setCountInput, setTextAll, setCountAll };
+  return {
+    countInput,
+    handleTextChangeAll,
+    handleCountChangeAll,
+  };
 };

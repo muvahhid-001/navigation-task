@@ -1,20 +1,20 @@
-import { useAppSelector } from "@/shared/hooks";
-import { selectBlocks } from "@entities/Blocks/model/blockSlice";
 import { useBlockUpdater } from "./lib/useBlockUpdater";
 
 export const DevControls = () => {
-  const blocks = useAppSelector(selectBlocks);
-  const { countInput, setTextAll, setCountAll } = useBlockUpdater(blocks);
+  const { countInput, handleTextChangeAll, handleCountChangeAll } =
+    useBlockUpdater();
 
   return (
-    <div style={{ display: "flex", gap: 16, marginBottom: 20, width: 500 }}>
+    <div
+      style={{ display: "flex", gap: "16px", marginBottom: 20, width: "500px" }}
+    >
       <div style={{ flex: 1 }}>
         <input
           type="text"
-          onChange={(e) => setTextAll(e.target.value)}
+          onChange={handleTextChangeAll}
           placeholder="Новый текст для всех блоков"
           style={{
-            padding: 8,
+            padding: "8px",
             width: "100%",
             borderColor: "#00c3ddff",
             borderRadius: "1rem",
@@ -25,10 +25,10 @@ export const DevControls = () => {
         <input
           type="text"
           value={countInput}
-          onChange={(e) => setCountAll(e.target.value)}
+          onChange={handleCountChangeAll}
           placeholder="Новое значение count"
           style={{
-            padding: 8,
+            padding: "8px",
             marginLeft: "1rem",
             width: "100%",
             borderColor: "#00c3ddff",
