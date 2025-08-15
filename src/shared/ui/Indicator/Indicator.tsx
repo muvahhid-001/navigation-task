@@ -31,9 +31,9 @@ export const Indicator = ({
     ${isActive ? styles.active : ""} 
     ${className ?? ""} 
     ${orientation === "down" ? styles.downText : ""} 
-    ${height <= 22 && orientation === "left" ? styles.positionLeft : ""}
-    ${height >= 23 && orientation === "left" ? styles.positionLeftTwo : ""}
-    ${height > 60 && orientation === "left" ? styles.positionReset : ""}
+    ${height <= 22 && orientation == "left" ? styles.positionLeft : ""}
+    ${height >= 36 && orientation === "left" ? styles.positionLeftTwo : ""}
+    ${height >= 50 && orientation === "left" ? styles.positionLeftThree : ""}
     ${height <= 40 && orientation === "note" ? styles.positionNote : ""}`}
     >
       {isActive ? `+${count}` : count}

@@ -27,17 +27,21 @@
   color: white;
   border: none;
 }
-.positionLeft{
-  transform: translateY(24px);
+.positionLeft {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.8rem;
 }
-.positionLeftTwo{
-  transform: translateY(14px);
+.positionLeftTwo {
+  position: relative;
+  right: 0;
+  bottom: -0.5rem;
 }
-.positionReset{
-    transform: translateY(4px) !important;
+.positionLeftThree {
+  position: static;
 }
 .positionNote {
-    transform: translateY(16px);
+  transform: translateY(16px);
 }
 .focused:not(.active),
 .selected:not(.active) {
@@ -46,4 +50,11 @@
 }
 .indicator.downText {
   color: white;
+}
+@media screen and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .positionLeft {
+      position: absolute;
+    }
+  }
 }
