@@ -36,19 +36,19 @@
 }
 
 .title::after {
-  content: "---";
+  content: "----";
 }
 .titleChange::after {
   content: "-----. ";
 }
 .titleTwo::after {
-  content: "-----";
-}
-.titleTwo.titleChange::after {
   content: "------";
 }
+.titleTwo.titleChange::after {
+  content: "-------";
+}
 .titleThree::after {
-  content: "-----";
+  content: "------";
 }
 .titleThree.titleChange::after {
   content: "--------";
