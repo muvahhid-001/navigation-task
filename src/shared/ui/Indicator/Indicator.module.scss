@@ -14,10 +14,11 @@
   font-family: "Urbanist", sans-serif;
   gap: 0.25rem;
   user-select: none;
-  float: right;
+  position: absolute;
   white-space: nowrap;
   min-width: 22px;
-  transform: translateY(6px);
+  right: 1rem;
+  bottom: 10px;
   right: 12px;
 }
 
@@ -27,22 +28,7 @@
   color: white;
   border: none;
 }
-.positionLeft {
-  position: absolute;
-  right: 1rem;
-  bottom: 0.8rem;
-}
-.positionLeftTwo {
-  position: relative;
-  right: 0;
-  bottom: -0.5rem;
-}
-.positionLeftThree {
-  position: static;
-}
-.positionNote {
-  transform: translateY(16px);
-}
+
 .focused:not(.active),
 .selected:not(.active) {
   color: #2bbee7;

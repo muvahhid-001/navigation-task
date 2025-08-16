@@ -13,7 +13,13 @@
   min-height: 4.25rem;
 }
 
-.title {
+.title,
+.titleChange,
+.titleTwo,
+.titleTwo.titleChange,
+.titleThree,
+.titleThree.titleChange,
+.titleFour {
   width: 100%;
   font-family: "Urbanist", sans-serif;
   color: #3b4552ec;
@@ -24,11 +30,36 @@
   overflow-wrap: break-word;
   word-break: break-word;
   white-space: normal;
+  &::after {
+    opacity: 0;
+  }
+}
+
+.title::after {
+  content: "---";
+}
+.titleChange::after {
+  content: "-----. ";
+}
+.titleTwo::after {
+  content: "-----";
+}
+.titleTwo.titleChange::after {
+  content: "------";
+}
+.titleThree::after {
+  content: "-----";
+}
+.titleThree.titleChange::after {
+  content: "--------";
+}
+.titleFour::after {
+  content: "-------";
 }
 
 .image {
   object-fit: cover;
-  align-self: self-start;
+  align-self: flex-start;
   width: 59px;
   height: 58px;
   border-radius: 13px;
@@ -74,11 +105,14 @@
 
 .orientation_down.PreviewItem {
   flex-direction: column-reverse;
-  padding-bottom: 1px;
+  padding-bottom: 0;
 }
 
-.orientation_down .editableTextArea {
+.orientation_down .editableTextArea,
+.orientation_up .editableTextArea {
   width: 20rem;
+  margin-left: 0;
+  min-width: 20rem;
 }
 
 .orientation_left .editableTextArea {
@@ -93,50 +127,32 @@
   padding-right: 14px;
 }
 
-.orientation_up .image {
-  position: static;
-  width: 21.39rem;
-  align-self: center;
-  height: 11.3125rem;
-  border-top-left-radius: 24px;
-  border-top-right-radius: 24px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  margin-bottom: 0.25px;
-  margin-top: -0.91rem;
-}
-
-.orientation_up .title {
-  width: 20rem;
-}
-
+.orientation_up .image,
 .orientation_down .image {
   position: static;
   align-self: center;
   width: 21.39rem;
   height: 11.3125rem;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 24px;
-  border-bottom-left-radius: 24px;
+}
+
+.orientation_up .image {
+  border-radius: 24px 24px 5px 5px;
+  margin-bottom: 0.25px;
+  margin-top: -0.91rem;
+}
+
+.orientation_down .image {
+  border-radius: 5px 5px 24px 24px;
   margin-bottom: 0.03rem;
 }
 
-.orientation_up .editableTextArea {
-  margin-left: 0;
-  min-width: 20rem;
-}
-
+.orientation_up .title,
 .orientation_down .title {
   width: 20rem;
-
-  &::after {
-    content: none;
-  }
 }
 
-.orientation_down {
-  padding-bottom: 0;
+.orientation_down .title::after {
+  content: none;
 }
 
 .indicatorDown {
@@ -167,11 +183,6 @@
 .editing {
   background-color: #ffffff;
   outline: 1px solid #2bbee7;
-  box-shadow: 0px 1px 8px 0px #0000001a;
-}
-
-.editing.selected {
-  background-color: #ffffff;
   box-shadow: 0px 1px 8px 0px #0000001a;
 }
 

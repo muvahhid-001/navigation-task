@@ -15,7 +15,7 @@ export const PreviewItem = ({
   isChanged,
   canSave,
   currentText,
-  height,
+
   titleRef,
   textareaRef,
   onTextChange,
@@ -78,32 +78,39 @@ export const PreviewItem = ({
           minRows={1}
         />
       ) : (
-        <p className={styles.title} ref={titleRef}>
+        <p
+          className={`
+  ${styles.title}
+  ${block.count > 9 ? styles.titleTwo : ""}
+  ${block.count > 166 ? styles.titleThree : ""}
+  ${block.count > 999 ? styles.titleFour : ""}
+  ${isChanged ? styles.titleChange : ""}
+`}
+          ref={titleRef}
+        >
           {block.text.trim() !== "" ? (
             block.text
           ) : (
             <span style={{ color: "#b7b7b7ab" }}>Напишите вашу идею!</span>
           )}
-          {!isSettingsVisible && (
-            <Indicator
-              count={block.count}
-              isActive={isChanged}
-              isFocused={block.isFocused}
-              isSelected={block.isSelected}
-              orientation={orientation}
-              height={height}
-              className={
-                orientation === "down"
-                  ? styles.indicatorDown
-                  : orientation === "up"
-                  ? styles.indicatorTheme
-                  : ""
-              }
-            />
-          )}
         </p>
       )}
-
+      {!isSettingsVisible && (
+        <Indicator
+          count={block.count}
+          isActive={isChanged}
+          isFocused={block.isFocused}
+          isSelected={block.isSelected}
+          orientation={orientation}
+          className={
+            orientation === "down"
+              ? styles.indicatorDown
+              : orientation === "up"
+              ? styles.indicatorTheme
+              : ""
+          }
+        />
+      )}
       {!isSettingsVisible && (
         <DotsButton onClick={handleDotsClick} orientation={orientation} />
       )}
